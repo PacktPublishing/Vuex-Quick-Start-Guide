@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple counter example</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://unpkg.com/vuex@3.0.1/dist/vuex.min.js"></script>
+<script src="https://unpkg.com/vue@2.5.13/dist/vue.min.js"></script>
+<script>
+  Vue.use(Vuex);
+
+  const sequential = {
+    namespaced: true,
+    state() {
+      return {
+        count: 1
+      };
+    },
+    mutations: {
+      increment: state => state.count++,
+      decrement: state => state.count--
+    },
+    actions: {
+      increment: ({commit}) => commit('increment'),
+      decrement: ({commit}) => commit('decrement')
+    },
+    getters: {
+      name: () => 'Sequential',
+      currentCount: state => state.count
+    }
+  };
+
+  const fizzBuzz = Object.assign({}, sequential, {
+    getters: {
+      name: () => 'FizzBuzz',
+      currentCount: state => {
+        const count = state.count;
+        let msg = '';
+        if (count % 3 === 0) msg += "Fizz";
+        if (count % 5 === 0) msg += "Buzz";
+        return count + ' ' + msg;
+      }
+    }
+  });
+
+  const store = new Vuex.Store({
+    modules: {
+      sequential,
+      fizzBuzz
+    }
+  });
+
+  const template = `
+  <div>
+    <button @click="increment">+</button>
+    <button @click="decrement">-</button>
+    <span>{{name}} value: {{currentCount}}</span>
+  </div>
+`;
+
+  const counter = {
+    template,
+    computed: Vuex.mapGetters('sequential', [
+      'name',
+      'currentCount'
+    ]),
+    methods: Vuex.mapActions('sequential', [
+      'increment',
+      'decrement'
+    ])
+  };
+
+  const fizzBuzzCounter = {
+    template,
+    computed: Vuex.mapGetters('fizzBuzz', [
+      'name',
+      'currentCount'
+    ]),
+    methods: Vuex.mapActions('fizzBuzz', [
+      'increment',
+      'decrement'
+    ])
+  };
+
+  new Vue({
+    el: '#app',
+    store,
+    template: '<div><counter></counter>' +
+    '<fizzBuzzCounter></fizzBuzzCounter></div>',
+    components: {
+      counter,
+      fizzBuzzCounter
+    }
+  });
+</script>
+</body>
+</html>
