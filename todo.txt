@@ -1,0 +1,8 @@
+Notes application features:
+- Create new notes
+- Edit existing notes
+- Delete notes
+- Search among notes
+- Pin a note
+Extra:
+- Persist notes
