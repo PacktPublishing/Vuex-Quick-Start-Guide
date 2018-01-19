@@ -1,3 +1,6 @@
+var webpackConfig = require('./webpack.config.js');
+delete webpackConfig.entry;
+
 module.exports = function(config) {
   config.set({
 
@@ -24,6 +27,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+      'test/**/*.spec.js': ['webpack']
     },
 
 
@@ -61,6 +65,14 @@ module.exports = function(config) {
 
     // Concurrency level
     // how many browser should be started simultaneous
-    concurrency: Infinity
+    concurrency: Infinity,
+
+    // use the webpack config
+    webpack: webpackConfig,
+
+    // avoid walls of useless text
+    webpackMiddleware: {
+      noInfo: true
+    }
   })
 };
