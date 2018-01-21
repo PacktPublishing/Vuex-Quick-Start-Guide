@@ -13,6 +13,6 @@
 <style>
   .app {
     font-family: "Times New Roman", Times, serif;
-    background-image: url("./background.jpeg");
+    background-image: url("background.jpeg");
   }
 </style>

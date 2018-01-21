@@ -1,10 +1,11 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const webpack = require('webpack');
 
 const config = {
   entry: {
-    app: './src/notes-app/index.js'
+    app: './src/notes-app/main.js'
   },
   output: {
     filename: '[name].bundle.js',
@@ -12,7 +13,10 @@ const config = {
   },
   plugins: [
     new HtmlWebpackPlugin({template: 'src/notes-app/index.html'}),
-    new CleanWebpackPlugin(['dist'])
+    new CleanWebpackPlugin(['dist']),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+    })
   ],
   module: {
     rules: [
