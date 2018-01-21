@@ -5,46 +5,52 @@ const webpack = require('webpack');
 
 const config = {
   entry: {
-    app: './src/notes-app/main.js'
+    app: './src/notes-app/main.js',
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist/notes-app/')
+    path: path.resolve(__dirname, 'dist/notes-app/'),
   },
   plugins: [
-    new HtmlWebpackPlugin({template: 'src/notes-app/index.html'}),
+    new HtmlWebpackPlugin({ template: 'src/notes-app/index.html' }),
     new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-    })
+    }),
   ],
   module: {
     rules: [
       {
+        enforce: 'pre',
         test: /\.vue$/,
-        loader: 'vue-loader'
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader',
       },
       {
         test: /\.css$/,
         use: [
           'vue-style-loader',
-          'css-loader'
+          'css-loader',
         ],
       },
       {
         test: /\.(png|jpg|jpeg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]'
-        }
-      }
-    ]
+          name: '[name].[ext]?[hash]',
+        },
+      },
+    ],
   },
   resolve: {
     alias: {
-      'vue$': 'vue/dist/vue.esm.js'
-    }
-  }
+      vue$: 'vue/dist/vue.esm.js',
+    },
+  },
 };
 
 module.exports = config;

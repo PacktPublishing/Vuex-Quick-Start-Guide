@@ -6,8 +6,8 @@
     computed: {
       version() {
         return this.$store.state.version;
-      }
-    }
+      },
+    },
   };
 </script>
 <style>
