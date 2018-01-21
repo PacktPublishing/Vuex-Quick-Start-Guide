@@ -2,7 +2,7 @@ Notes application features:
 - Create new notes
 - Edit existing notes
 - Delete notes
+- Persist notes to localStorage
+Extra:
 - Search among notes
 - Pin a note
-Extra:
-- Persist notes

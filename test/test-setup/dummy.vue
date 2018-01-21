@@ -4,14 +4,7 @@
 <script>
   export default {
     data() {
-      return {
-        msg: 'A message'
-      }
+      return {msg: 'A message'};
     }
   };
 </script>
-<style>
-  div {
-    font-family: Arial, Helvetica, sans-serif;
-  }
-</style>

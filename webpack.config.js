@@ -4,7 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const config = {
   entry: {
-    app: './src/notes-app/index.js',
+    app: './src/notes-app/index.js'
   },
   output: {
     filename: '[name].bundle.js',
@@ -39,9 +39,8 @@ const config = {
   resolve: {
     alias: {
       'vue$': 'vue/dist/vue.esm.js'
-    },
-    extensions: ['*', '.js', '.vue', '.json']
-  },
+    }
+  }
 };
 
 module.exports = config;

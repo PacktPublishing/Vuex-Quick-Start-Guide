@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Test from './dummy.vue';
 
-describe('test.vue', function () {
+describe('dummy.vue', function () {
   it('should have correct message', function () {
     expect(Test.data().msg).toBe('A message');
   });
