@@ -36,7 +36,9 @@ describe('NoteList.vue', () => {
 
     const noteListCmp = newNoteListCmp();
 
-    expect(noteListCmp.$el.querySelectorAll('.content').length).toBe(2);
+    const contents =
+      noteListCmp.$el.querySelectorAll('.content');
+    expect(contents.length).toBe(2);
   });
 
   it('should render notes inside noteList', () => {
@@ -46,8 +48,10 @@ describe('NoteList.vue', () => {
 
     const noteListCmp = newNoteListCmp();
 
-    expect(noteListCmp.$el.querySelector('.title').textContent).toBe(title);
-    expect(noteListCmp.$el.querySelector('.content').textContent).toBe(content);
+    const { $el } = noteListCmp;
+    const titleEl = $el.querySelector('.title');
+    const contentEl = $el.querySelector('.content');
+    expect(titleEl.textContent).toBe(title);
+    expect(contentEl.textContent).toBe(content);
   });
 });
-
