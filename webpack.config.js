@@ -5,21 +5,27 @@ const webpack = require('webpack');
 
 const config = {
   entry: {
-    app: './src/notes-app/main.js',
+    app: './src/main.js',
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist/notes-app/'),
+    path: path.resolve(__dirname, 'dist/'),
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: 'src/notes-app/index.html' }),
+    new HtmlWebpackPlugin({ template: 'src/index.html' }),
     new CleanWebpackPlugin(['dist']),
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
     }),
   ],
   module: {
     rules: [
+      {
+        enforce: 'pre',
+        test: /\.js$/,
+        loader: 'eslint-loader',
+        exclude: /node_modules/,
+      },
       {
         enforce: 'pre',
         test: /\.vue$/,

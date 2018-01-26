@@ -1,8 +1,9 @@
-Notes application features:
-- Create new notes
-- Edit existing notes
-- Delete notes
-- Persist notes to localStorage
+Create new notes
+Show all notes
+Update an existing note
+Delete a note
+Save notes to LocalStorage
+
 Extra:
-- Search among notes
-- Pin a note
+Search among notes
+Pin a note
