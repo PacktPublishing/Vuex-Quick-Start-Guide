@@ -1,9 +1,9 @@
-Create new notes
+Show all notes
   - Add note list to the store
   - Note list vue component
   -- Add a temporary note list to the store*
 
-Show all notes
+Create new notes
 Update an existing note
 Delete a note
 Save notes to LocalStorage
