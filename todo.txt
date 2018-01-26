@@ -1,6 +1,7 @@
 Create new notes
-  - Add note list to the store*
-  - Note list vue component
+  - Add note list to the store
+  - Note list vue component*
+  -- Add a temporary note list to the store
 
 Show all notes
 Update an existing note
