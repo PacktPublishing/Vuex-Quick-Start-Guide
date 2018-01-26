@@ -1,10 +1,19 @@
 // components/App.vue
 
 <template>
-  <div class="app">EveryNote app</div>
+  <div class="app">
+    <div>EveryNote app</div>
+    <note-list></note-list>
+  </div>
 </template>
 <script>
-  export default {};
+  import NoteList from './NoteList.vue';
+
+  export default {
+    components: {
+      NoteList,
+    },
+  };
 </script>
 <style>
   .app {
