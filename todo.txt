@@ -1,9 +1,10 @@
-Show all notes
-  - Add note list to the store
-  - Note list vue component
-  -- Add a temporary note list to the store*
+To-do:
+Create new notes*
+- NoteEditor component
+- Update current note mutation
+- Add current to note list note mutation
+- Add note action
 
-Create new notes
 Update an existing note
 Delete a note
 Save notes to LocalStorage
@@ -11,3 +12,9 @@ Save notes to LocalStorage
 Extra:
 Search among notes
 Pin a note
+
+Done:
+Show all notes
+  - Add note list to the store
+  - Note list vue component
+  -- Add a temporary note list to the store
