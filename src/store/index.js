@@ -7,7 +7,9 @@ Vue.use(Vuex);
 
 const debug = process.env.NODE_ENV !== 'production';
 const store = new Vuex.Store({
-  state: {},
+  state: {
+    noteList: [],
+  },
   strict: debug,
 });
 
