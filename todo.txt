@@ -2,7 +2,7 @@ To-do:
 Create new notes*
 - NoteEditor component
 - Update current note mutation
-- Add current to note list note mutation
+- Add note to noteList mutation
 - Add note action
 
 Update an existing note
