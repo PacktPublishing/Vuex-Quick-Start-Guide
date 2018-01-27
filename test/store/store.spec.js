@@ -7,6 +7,8 @@ describe('EveryNote main store', () => {
   });
 
   it('should have currentNote property', () => {
-    expect(store.state.currentNote).not.toBe(undefined);
+    const { state } = store;
+    expect(state.currentNote.title).not.toBe(undefined);
+    expect(state.currentNote.content).not.toBe(undefined);
   });
 });

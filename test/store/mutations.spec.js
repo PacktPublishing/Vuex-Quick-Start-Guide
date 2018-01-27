@@ -2,13 +2,14 @@
 import { mutations, types } from '../../src/store/mutations';
 
 describe('EveryNote root mutations', () => {
-  it('should update current note text', () => {
+  it('should update current note', () => {
     const updateCurrentNote
       = mutations[types.UPDATE_CURRENT_NOTE];
-    const state = { currentNote: '' };
+    const state = { currentNote: { title: '', content: '' } };
+    const newNote = { title: 'title', content: 'some text' };
 
-    updateCurrentNote(state, 'New note content');
+    updateCurrentNote(state, newNote);
 
-    expect(state.currentNote).toBe('New note content');
+    expect(state.currentNote).toEqual(newNote);
   });
 });

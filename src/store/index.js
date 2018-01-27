@@ -11,7 +11,7 @@ const store = new Vuex.Store({
       { title: 'title A', content: 'content 1' },
       { title: 'title B', content: 'content 2' },
     ],
-    currentNote: '',
+    currentNote: { title: '', content: '' },
   },
   strict: debug,
 });

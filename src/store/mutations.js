@@ -3,7 +3,7 @@ export const types = {
 };
 
 export const mutations = {
-  [types.UPDATE_CURRENT_NOTE](state, newContent) {
-    state.currentNote = newContent;
+  [types.UPDATE_CURRENT_NOTE](state, { title, content }) {
+    state.currentNote = { title, content };
   },
 };
