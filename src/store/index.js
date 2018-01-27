@@ -1,5 +1,4 @@
 // store/index.js
-
 import Vuex from 'vuex';
 import Vue from 'vue';
 
@@ -12,6 +11,7 @@ const store = new Vuex.Store({
       { title: 'title A', content: 'content 1' },
       { title: 'title B', content: 'content 2' },
     ],
+    currentNote: '',
   },
   strict: debug,
 });
