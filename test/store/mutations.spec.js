@@ -12,4 +12,14 @@ describe('EveryNote root mutations', () => {
 
     expect(state.currentNote).toEqual(newNote);
   });
+
+  it('should add a note to noteList', () => {
+    const ADD_NOTE = mutations[types.ADD_NOTE];
+    const state = { noteList: [] };
+    const newNote = { title: 'title', content: 'some text' };
+
+    ADD_NOTE(state, newNote);
+
+    expect(state.noteList['0']).toBe(newNote);
+  });
 });
