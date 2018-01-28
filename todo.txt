@@ -1,12 +1,10 @@
 To-do:
-Create new notes*
-- NoteEditor component
-- Update current note mutation
-- Add note to noteList mutation
-- Add note action
+Delete a note*
+- delete action
+- delete mutation
+- create Note component and use it in NoteList component
 
 Update an existing note
-Delete a note
 Save notes to LocalStorage
 
 Extra:
@@ -15,6 +13,4 @@ Pin a note
 
 Done:
 Show all notes
-  - Add note list to the store
-  - Note list vue component
-  -- Add a temporary note list to the store
+Create new notes
