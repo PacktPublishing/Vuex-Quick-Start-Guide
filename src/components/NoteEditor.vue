@@ -1,11 +1,15 @@
 // src/components/NoteEditor.vue
 <template>
-  <div>
-    <input v-model="title" type="text" class="title"
-           placeholder="title"/>
-    <input v-model="content" type="text" class="content"
-           placeholder="content"/>
-    <button @click="addNote">Add note</button>
+  <div class="container">
+    <div class="centered">
+      <input v-model="title" type="text" class="title"
+             placeholder="title"/><br>
+      <textarea v-model="content" class="content" rows="3"
+                placeholder="content"></textarea><br>
+      <div class="buttons">
+        <button @click="addNote" class="add">Add note</button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -55,4 +59,33 @@
     },
   };
 </script>
-<style></style>
+<style scoped>
+  .title, .content {
+    border: none;
+    width: calc(100% - 20px);
+    padding: 10px;
+    display: inline-block;
+  }
+
+  .title {
+    font-weight: bold;
+  }
+
+  .container {
+    text-align: center;
+    margin-top: 0px;
+  }
+
+  .container .centered {
+    display: inline-block;
+    width: 80%;
+    text-align: left;
+    background-color: white;
+    box-shadow: 3px 3px 5px grey;
+  }
+
+  .buttons {
+    padding: 10px;
+  }
+
+</style>

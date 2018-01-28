@@ -17,7 +17,23 @@
     }),
   };
 </script>
-<style>
+<style scoped>
+  .container {
+    position: relative;
+    margin-top: 10px;
+  }
+
+  .note {
+    display: inline-block;
+    border: 1px solid grey;
+    background-color: FloralWhite;
+    width: 240px;
+    padding: 10px;
+    margin-right: 5px;
+    margin-top: 5px;
+    box-shadow: 3px 3px 5px grey;
+  }
+
   .title {
     font-weight: bold;
   }

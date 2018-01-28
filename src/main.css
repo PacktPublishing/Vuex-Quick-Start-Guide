@@ -1,0 +1,9 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: "Times New Roman", Times, serif;
+    background-color: #e8e8e8;
+    padding: 0;
+}
