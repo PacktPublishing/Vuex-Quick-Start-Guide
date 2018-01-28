@@ -49,6 +49,8 @@
 
           this.$store.dispatch('addNote', newNote);
         }
+        this.title = '';
+        this.content = '';
       },
     },
   };

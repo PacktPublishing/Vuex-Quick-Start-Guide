@@ -2,7 +2,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import NoteEditor from '../../src/components/NoteEditor.vue';
-import { types } from '../../src/store/mutations';
+import { types, mutations } from '../../src/store/mutations';
+import actions from '../../src/store/actions';
 
 const { UPDATE_CURRENT_NOTE } = types;
 describe('NoteEditor component', () => {
@@ -12,7 +13,9 @@ describe('NoteEditor component', () => {
   function newNoteEditorCmp() {
     const Constructor = Vue.extend(NoteEditor);
     store = new Vuex.Store({
-      state: { currentNote },
+      state: { currentNote, noteList: [] },
+      mutations,
+      actions,
     });
     return new Constructor({
       store,
@@ -88,5 +91,14 @@ describe('NoteEditor component', () => {
     editorCmp.addNote();
 
     expect(store.dispatch).not.toHaveBeenCalled();
+  });
+
+  it('should reset title and content on addNote', () => {
+    const editorCmp = newNoteEditorCmp();
+
+    editorCmp.addNote();
+
+    expect(editorCmp.title).toBe('');
+    expect(editorCmp.content).toBe('');
   });
 });
