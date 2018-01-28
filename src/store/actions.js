@@ -1,3 +1,4 @@
+// src/store/actions
 import { types } from './mutations';
 
 export default {

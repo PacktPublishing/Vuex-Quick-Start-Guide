@@ -1,4 +1,4 @@
-// store/mutations.js
+// src/store/mutations.js
 export const types = {
   UPDATE_CURRENT_NOTE: 'UPDATE_CURRENT_NOTE',
   ADD_NOTE: 'ADD_NOTE',

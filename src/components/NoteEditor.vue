@@ -1,8 +1,11 @@
 // src/components/NoteEditor.vue
 <template>
   <div>
-    <input v-model="title" type="text" class="title"/>
-    <input v-model="content" type="text" class="content"/>
+    <input v-model="title" type="text" class="title"
+           placeholder="title"/>
+    <input v-model="content" type="text" class="content"
+           placeholder="content"/>
+    <button @click="addNote">Add note</button>
   </div>
 </template>
 <script>
@@ -34,6 +37,18 @@
           };
           this.$store.commit(UPDATE_CURRENT_NOTE, newContent);
         },
+      },
+    },
+    methods: {
+      addNote() {
+        if (this.title !== '' || this.content !== '') {
+          const newNote = {
+            title: this.title,
+            content: this.content,
+          };
+
+          this.$store.dispatch('addNote', newNote);
+        }
       },
     },
   };

@@ -1,7 +1,8 @@
-// store/index.js
+// src/store/index.js
 import Vuex from 'vuex';
 import Vue from 'vue';
 import { mutations } from './mutations';
+import actions from './actions';
 
 Vue.use(Vuex);
 
@@ -15,6 +16,7 @@ const store = new Vuex.Store({
     currentNote: { title: '', content: '' },
   },
   mutations,
+  actions,
   strict: debug,
 });
 

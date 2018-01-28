@@ -69,13 +69,24 @@ describe('NoteEditor component', () => {
       .toHaveBeenCalledWith(UPDATE_CURRENT_NOTE, expected);
   });
 
-  it('should render current note inside the editor', () => {
+  it('should have addNote method', () => {
     const editorCmp = newNoteEditorCmp();
+    spyOn(store, 'dispatch');
 
-    const { $el } = editorCmp;
-    const contentEl = $el.querySelector('.content');
-    const titleEl = $el.querySelector('.title');
-    expect(contentEl.value).toBe(currentNote.content);
-    expect(titleEl.value).toBe(currentNote.title);
+    editorCmp.addNote();
+
+    expect(store.dispatch)
+      .toHaveBeenCalledWith('addNote', currentNote);
+  });
+
+  it('should not add empty notes', () => {
+    const editorCmp = newNoteEditorCmp();
+    spyOn(store, 'dispatch');
+    currentNote.title = '';
+    currentNote.content = '';
+
+    editorCmp.addNote();
+
+    expect(store.dispatch).not.toHaveBeenCalled();
   });
 });

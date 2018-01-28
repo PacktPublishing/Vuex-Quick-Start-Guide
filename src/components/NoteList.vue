@@ -2,7 +2,7 @@
 
 <template>
   <div class="container">
-    <div v-for="note in notes">
+    <div v-for="note in notes" class="note">
       <div class="title">{{note.title}}</div>
       <div class="content">{{note.content}}</div>
     </div>
@@ -18,4 +18,7 @@
   };
 </script>
 <style>
+  .title {
+    font-weight: bold;
+  }
 </style>

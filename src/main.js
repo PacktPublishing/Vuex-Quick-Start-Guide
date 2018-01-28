@@ -1,4 +1,4 @@
-// main.js
+// src/main.js
 import Vue from 'vue';
 import App from './components/App.vue';
 import store from './store';
