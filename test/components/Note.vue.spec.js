@@ -1,18 +1,24 @@
 // test/components/Note.spec.js
 import Vue from 'vue';
+import Vuex from 'vuex';
 import Note from '../../src/components/Note.vue';
 
 describe('Note.vue', () => {
   let note;
-
+  let store;
   beforeEach(() => {
+    Vue.use(Vuex);
     note = { title: 'title', content: 'content' };
   });
 
   function newNoteCmp() {
     const Constructor = Vue.extend(Note);
+    store = new Vuex.Store({
+      state: {},
+    });
     return new Constructor({
       propsData: { note },
+      store,
     }).$mount();
   }
 
@@ -26,5 +32,15 @@ describe('Note.vue', () => {
     const contentEl = $el.querySelector('.content');
     expect(titleEl.textContent.trim()).toBe(title);
     expect(contentEl.textContent.trim()).toBe(content);
+  });
+
+  it('should emit deleteNote on delete tap', () => {
+    const noteCmp = newNoteCmp();
+    spyOn(store, 'dispatch');
+
+    noteCmp.onDelete();
+
+    expect(store.dispatch)
+      .toHaveBeenCalledWith('deleteNote', note);
   });
 });
