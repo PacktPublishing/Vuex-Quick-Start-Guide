@@ -3,7 +3,7 @@
   <div class="app">
     <div class="header">EveryNote</div>
     <div class="body">
-      <note-editor></note-editor>
+      <note-editor :note="$store.state.currentNote"></note-editor>
       <note-list></note-list>
     </div>
   </div>

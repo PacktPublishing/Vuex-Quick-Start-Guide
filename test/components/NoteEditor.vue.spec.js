@@ -1,102 +1,59 @@
 // test/components/NoteEditor.spec.js
 import Vue from 'vue';
-import Vuex from 'vuex';
 import NoteEditor from '../../src/components/NoteEditor.vue';
-import { types, mutations } from '../../src/store/mutations';
-import actions from '../../src/store/actions';
 
-const { UPDATE_CURRENT_NOTE } = types;
 describe('NoteEditor component', () => {
-  let store;
-  let currentNote;
+  let note;
 
   function newNoteEditorCmp() {
     const Constructor = Vue.extend(NoteEditor);
-    store = new Vuex.Store({
-      state: { currentNote, noteList: [] },
-      mutations,
-      actions,
-    });
     return new Constructor({
-      store,
+      propsData: { note },
     }).$mount();
   }
 
   beforeEach(() => {
-    Vue.use(Vuex);
-    currentNote = { title: 'title', content: 'content' };
-    store = new Vuex.Store({
-      state: { currentNote },
-    });
+    note = { title: 'title', content: 'content' };
   });
 
-  it('should expose currentNote.content as content', () => {
+  it('should init title and content to note prop', () => {
     const editorCmp = newNoteEditorCmp();
 
-    expect(editorCmp.content).toBe(currentNote.content);
+    expect(editorCmp.title).not.toBe(undefined);
+    expect(editorCmp.title).toBe(note.title);
+    expect(editorCmp.content).not.toBe(undefined);
+    expect(editorCmp.content).toBe(note.content);
   });
 
-  it('should expose currentNote.content setter', () => {
+  it('should have onEditDone method ' +
+    'that emits the edited note', () => {
     const editorCmp = newNoteEditorCmp();
-    store.commit = jasmine.createSpy('commit spy');
-    const newContent = 'A new content';
+    spyOn(editorCmp, '$emit');
+    const newNote = { title: 'a', content: 'b' };
 
-    editorCmp.content = newContent;
+    editorCmp.title = newNote.title;
+    editorCmp.content = newNote.content;
+    editorCmp.onEditDone();
 
-    const expected = {
-      title: currentNote.title,
-      content: newContent,
-    };
-    expect(store.commit)
-      .toHaveBeenCalledWith(UPDATE_CURRENT_NOTE, expected);
+    expect(editorCmp.$emit)
+      .toHaveBeenCalledWith('editDone', newNote);
   });
 
-  it('should expose currentNote.title as title', () => {
+  it('should not emit empty notes', () => {
+    note.title = '';
+    note.content = '';
     const editorCmp = newNoteEditorCmp();
+    spyOn(editorCmp, '$emit');
 
-    expect(editorCmp.title).toBe(currentNote.title);
+    editorCmp.onEditDone();
+
+    expect(editorCmp.$emit).not.toHaveBeenCalled();
   });
 
-  it('should expose currentNote.title setter', () => {
-    const editorCmp = newNoteEditorCmp();
-    store.commit = jasmine.createSpy('commit spy');
-    const newTitle = 'A new title';
-
-    editorCmp.title = newTitle;
-
-    const expected = {
-      title: newTitle,
-      content: currentNote.content,
-    };
-    expect(store.commit)
-      .toHaveBeenCalledWith(UPDATE_CURRENT_NOTE, expected);
-  });
-
-  it('should have addNote method', () => {
-    const editorCmp = newNoteEditorCmp();
-    spyOn(store, 'dispatch');
-
-    editorCmp.addNote();
-
-    expect(store.dispatch)
-      .toHaveBeenCalledWith('addNote', currentNote);
-  });
-
-  it('should not add empty notes', () => {
-    const editorCmp = newNoteEditorCmp();
-    spyOn(store, 'dispatch');
-    currentNote.title = '';
-    currentNote.content = '';
-
-    editorCmp.addNote();
-
-    expect(store.dispatch).not.toHaveBeenCalled();
-  });
-
-  it('should reset title and content on addNote', () => {
+  it('should reset title, content after onEditDone', () => {
     const editorCmp = newNoteEditorCmp();
 
-    editorCmp.addNote();
+    editorCmp.onEditDone();
 
     expect(editorCmp.title).toBe('');
     expect(editorCmp.content).toBe('');
