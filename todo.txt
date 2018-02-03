@@ -1,10 +1,13 @@
 To-do:
-Delete a note*
-- delete action
-- delete mutation
-- create Note component and use it in NoteList component
+Update an existing note*
+- re-use NoteEditor with an existing note
 
-Update an existing note
+Considerations:
+- I could use vue-router to have 2 pages:
+-- Note list page
+-- Edit a note Page
+- NoteList could be refactored into a dumb component
+
 Save notes to LocalStorage
 
 Extra:
@@ -14,3 +17,4 @@ Pin a note
 Done:
 Show all notes
 Create new notes
+Delete a note
