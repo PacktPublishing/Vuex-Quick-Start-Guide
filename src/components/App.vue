@@ -3,8 +3,9 @@
   <div class="app">
     <div class="header">EveryNote</div>
     <div class="body">
-      <note-editor :note="$store.state.currentNote"></note-editor>
-      <note-list></note-list>
+      <note-editor :note="$store.state.currentNote"
+                   @editDone="onEditDone"/>
+      <note-list/>
     </div>
   </div>
 </template>
@@ -16,6 +17,11 @@
     components: {
       NoteList,
       NoteEditor,
+    },
+    methods: {
+      onEditDone(note) {
+        this.$store.dispatch('addNote', note);
+      },
     },
   };
 </script>
