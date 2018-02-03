@@ -28,4 +28,30 @@ describe('EveryNote root actions', () => {
     expect(mockContext.commit)
       .toHaveBeenCalledWith(types.DELETE_NOTE, aNote);
   });
+
+  it('should have editNote action', () => {
+    const { editNote } = actions;
+    const mockContext = {
+      commit: jasmine.createSpy('commit'),
+    };
+    const aNote = {};
+
+    editNote(mockContext, aNote);
+
+    expect(mockContext.commit)
+      .toHaveBeenCalledWith(types.EDIT_NOTE, aNote);
+  });
+
+  it('should have updateNote action', () => {
+    const { updateNote } = actions;
+    const mockContext = {
+      commit: jasmine.createSpy('commit'),
+    };
+    const aNote = {};
+
+    updateNote(mockContext, aNote);
+
+    expect(mockContext.commit)
+      .toHaveBeenCalledWith(types.UPDATE_NOTE, aNote);
+  });
 });

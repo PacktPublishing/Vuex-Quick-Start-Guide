@@ -6,6 +6,8 @@
          style="white-space: pre-line;" v-text="note.content">
     </div>
     <div class="icons">
+      <img class="edit" src="./edit.svg"
+           @click="onEdit"/>
       <img class="delete" src="./delete.svg"
            @click="onDelete"/>
     </div>
@@ -17,6 +19,9 @@
     methods: {
       onDelete() {
         this.$store.dispatch('deleteNote', this.note);
+      },
+      onEdit() {
+        this.$store.dispatch('editNote', this.note);
       },
     },
   };
@@ -47,12 +52,15 @@
   .icons {
     margin-top: 5px;
     width: 100%;
-    text-align: right;
+  }
+
+  .delete, .edit {
+    width: 24px;
+    height: 24px;
+    opacity: 0.6;
   }
 
   .delete {
-    width: 24px;
-    height: 24px;
-    opacity: 0.7;
+    float: right;
   }
 </style>

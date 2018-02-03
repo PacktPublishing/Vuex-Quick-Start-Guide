@@ -43,4 +43,14 @@ describe('Note.vue', () => {
     expect(store.dispatch)
       .toHaveBeenCalledWith('deleteNote', note);
   });
+
+  it('should emit editNote on edit tap', () => {
+    const noteCmp = newNoteCmp();
+    spyOn(store, 'dispatch');
+
+    noteCmp.onEdit();
+
+    expect(store.dispatch)
+      .toHaveBeenCalledWith('editNote', note);
+  });
 });

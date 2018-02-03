@@ -14,6 +14,8 @@ const store = new Vuex.Store({
       { title: 'title B', content: 'content 2' },
     ],
     currentNote: { title: '', content: '' },
+    editNote: null,
+    editIndex: -1,
   },
   mutations,
   actions,

@@ -26,12 +26,12 @@ describe('App.vue', () => {
   });
 
   it('should update store.currentNote ' +
-    'on editDone event', () => {
+    'on onAddDone event', () => {
     const app = newAppCmp();
     spyOn(app.$store, 'dispatch');
     const aNote = {};
 
-    app.onEditDone(aNote);
+    app.onAddDone(aNote);
 
     expect(app.$store.dispatch)
       .toHaveBeenCalledWith('addNote', aNote);

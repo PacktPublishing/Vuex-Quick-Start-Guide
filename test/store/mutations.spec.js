@@ -43,4 +43,28 @@ describe('EveryNote root mutations', () => {
 
     expect(state.noteList.length).toBe(1);
   });
+
+  it('should set note under editing', () => {
+    const EDIT_NOTE = mutations[types.EDIT_NOTE];
+    const aNote = {};
+    const state = { noteList: [aNote] };
+
+    EDIT_NOTE(state, aNote);
+
+    expect(state.editNote).toBe(aNote);
+    expect(state.editIndex).toBe(0);
+  });
+
+  it('should update current edited note', () => {
+    const UPDATE_NOTE = mutations[types.UPDATE_NOTE];
+    const aNote = {};
+    const state = { editIndex: 0, noteList: [aNote] };
+    const aNewNote = {};
+
+    UPDATE_NOTE(state, aNewNote);
+
+    expect(state.editNote).toBe(null);
+    expect(state.editIndex).toBe(-1);
+    expect(state.noteList[0]).toBe(aNewNote);
+  });
 });

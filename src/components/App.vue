@@ -4,8 +4,12 @@
     <div class="header">EveryNote</div>
     <div class="body">
       <note-editor :note="$store.state.currentNote"
-                   @editDone="onEditDone"/>
+                   @editDone="onAddDone"/>
       <note-list/>
+    </div>
+    <div class="overlay" v-if="$store.state.editNote">
+      <note-editor class="note-editor" @editDone="onEditDone"
+                   :note="$store.state.editNote"/>
     </div>
   </div>
 </template>
@@ -19,15 +23,17 @@
       NoteEditor,
     },
     methods: {
-      onEditDone(note) {
+      onAddDone(note) {
         this.$store.dispatch('addNote', note);
+      },
+      onEditDone(note) {
+        this.$store.dispatch('updateNote', note);
       },
     },
   };
 </script>
 <style scoped>
   .app {
-    position: relative;
   }
 
   .header {
@@ -39,5 +45,20 @@
 
   .body {
     padding: 5px;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(229, 229, 229, 0.75);
+  }
+
+  .note-editor {
+    position: absolute;
+    width: 100%;
+    top: 20%;
   }
 </style>

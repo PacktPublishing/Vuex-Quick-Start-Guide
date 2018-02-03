@@ -8,4 +8,10 @@ export default {
   deleteNote({ commit }, aNote) {
     commit(types.DELETE_NOTE, aNote);
   },
+  editNote({ commit }, aNote) {
+    commit(types.EDIT_NOTE, aNote);
+  },
+  updateNote({ commit }, aNote) {
+    commit(types.UPDATE_NOTE, aNote);
+  },
 };

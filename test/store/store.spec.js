@@ -11,4 +11,10 @@ describe('EveryNote main store', () => {
     expect(state.currentNote.title).not.toBe(undefined);
     expect(state.currentNote.content).not.toBe(undefined);
   });
+
+  it('should have editNote property', () => {
+    const { state } = store;
+    expect(state.editNote).not.toBe(undefined);
+    expect(state.editIndex).not.toBe(undefined);
+  });
 });
