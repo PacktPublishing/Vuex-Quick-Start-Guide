@@ -1,11 +1,8 @@
 To-do:
-Update an existing note*
-- re-use NoteEditor with an existing note
+Save notes to LocalStorage
 
 Considerations:
 - NoteList could be refactored into a dumb component
-
-Save notes to LocalStorage
 
 Extra:
 Search among notes
@@ -15,3 +12,4 @@ Done:
 Show all notes
 Create new notes
 Delete a note
+Update an existing note
