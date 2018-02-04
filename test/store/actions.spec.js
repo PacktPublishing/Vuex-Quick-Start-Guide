@@ -1,6 +1,7 @@
 // test/store/actions.spec.js
 import actions from '../../src/store/actions';
 import { types } from '../../src/store/mutations';
+import api from '../../src/api/api-mock';
 
 describe('EveryNote root actions', () => {
   it('should have addNote action', () => {
@@ -53,5 +54,20 @@ describe('EveryNote root actions', () => {
 
     expect(mockContext.commit)
       .toHaveBeenCalledWith(types.UPDATE_NOTE, aNote);
+  });
+
+  it('should have loadNotesFromServer action', (done) => {
+    const { loadNotesFromServer } = actions;
+    const mockContext = {
+      commit: jasmine.createSpy('commit'),
+    };
+    const aNote = {};
+    spyOn(api, 'fetchAllNotes').and.returnValue(Promise.resolve([aNote]));
+
+    loadNotesFromServer(mockContext).then(() => {
+      expect(mockContext.commit)
+        .toHaveBeenCalledWith(types.ADD_NOTE, aNote);
+      done();
+    });
   });
 });

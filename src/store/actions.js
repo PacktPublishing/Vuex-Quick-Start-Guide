@@ -1,5 +1,6 @@
 // src/store/actions
 import { types } from './mutations';
+import api from '../api/api-mock';
 
 export default {
   addNote({ commit }, aNote) {
@@ -13,5 +14,10 @@ export default {
   },
   updateNote({ commit }, aNote) {
     commit(types.UPDATE_NOTE, aNote);
+  },
+  loadNotesFromServer({ commit }) {
+    return api.fetchAllNotes().then((notes) => {
+      notes.forEach(note => commit(types.ADD_NOTE, note));
+    });
   },
 };

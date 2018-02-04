@@ -18,6 +18,9 @@
   import NoteEditor from './NoteEditor.vue';
 
   export default {
+    created() {
+      this.$store.dispatch('loadNotesFromServer');
+    },
     components: {
       NoteList,
       NoteEditor,

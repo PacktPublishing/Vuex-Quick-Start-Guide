@@ -12,6 +12,9 @@ describe('App.vue', () => {
     const Constructor = Vue.extend(App);
     store = new Vuex.Store({
       state: { currentNote, noteList },
+      actions: {
+        loadNotesFromServer() {},
+      },
     });
 
     return new Constructor({
