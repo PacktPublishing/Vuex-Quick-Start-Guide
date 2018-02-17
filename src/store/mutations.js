@@ -5,6 +5,7 @@ export const types = {
   DELETE_NOTE: 'DELETE_NOTE',
   EDIT_NOTE: 'EDIT_NOTE',
   UPDATE_NOTE: 'UPDATE_NOTE',
+  UPDATE_LAST_EDIT_DATE: 'UPDATE_LAST_EDIT_DATE',
 };
 
 export const mutations = {
@@ -34,5 +35,8 @@ export const mutations = {
       state.noteList.splice(index, 1, aNote);
       state.editIndex = -1;
     }
+  },
+  [types.UPDATE_LAST_EDIT_DATE](state) {
+    state.lastEditDate = new Date();
   },
 };

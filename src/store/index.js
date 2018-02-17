@@ -4,11 +4,14 @@ import Vue from 'vue';
 import createLogger from 'vuex/dist/logger';
 import { mutations } from './mutations';
 import actions from './actions';
+import plugins from './plugins';
 
 Vue.use(Vuex);
 
 const debug = process.env.NODE_ENV !== 'production';
-const plugins = debug ? [createLogger({})] : [];
+if (debug) {
+  plugins.push(createLogger({}));
+}
 const store = new Vuex.Store({
   state: {
     noteList: [],
