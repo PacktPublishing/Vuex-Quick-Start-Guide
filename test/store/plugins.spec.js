@@ -1,6 +1,7 @@
 // test/store/mutations.spec.js
-import { lastEditDate } from '../../src/store/plugins';
+import { lastEditDate, googleAnalytics } from '../../src/store/plugins';
 import { types } from '../../src/store/mutations';
+import GtagAnalytics from '../../src/gtag';
 
 describe('EveryNote plugins', () => {
   let storeMock;
@@ -9,6 +10,7 @@ describe('EveryNote plugins', () => {
     storeMock = {
       subscribe: jasmine.createSpy('subscribe'),
       commit: jasmine.createSpy('commit'),
+      state: {},
     };
   });
 
@@ -40,6 +42,41 @@ describe('EveryNote plugins', () => {
       subscribeCb({ type: types.UPDATE_LAST_EDIT_DATE });
 
       expect(storeMock.commit).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('googleAnalytics', () => {
+    const path = 'aPagePath';
+    beforeEach(() => {
+      storeMock.state.route = {
+        path,
+      };
+      spyOn(GtagAnalytics, 'sendEvent');
+      spyOn(GtagAnalytics, 'sendPageView');
+    });
+
+    it('should send a gtag event for each mutation', () => {
+      googleAnalytics(storeMock);
+      const type = 'aType';
+
+      const firstCall = storeMock.subscribe.calls.first();
+      const subscribeCallback = firstCall.args[0];
+      subscribeCallback({ type });
+
+      expect(GtagAnalytics.sendEvent)
+        .toHaveBeenCalledWith(type);
+    });
+
+    it('should send a page view on ROUTE_CHANGED', () => {
+      googleAnalytics(storeMock);
+      const type = 'route/ROUTE_CHANGED';
+
+      const firstCall = storeMock.subscribe.calls.first();
+      const subscribeCallback = firstCall.args[0];
+      subscribeCallback({ type }, storeMock.state);
+
+      expect(GtagAnalytics.sendPageView)
+        .toHaveBeenCalledWith(path);
     });
   });
 });

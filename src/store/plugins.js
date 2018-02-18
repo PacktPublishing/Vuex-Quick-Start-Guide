@@ -1,5 +1,6 @@
 // src/store/plugins.js
 import { types } from './mutations';
+import analytics from '../gtag';
 
 export const lastEditDate = (store) => {
   store.subscribe((mutation) => {
@@ -9,4 +10,14 @@ export const lastEditDate = (store) => {
   });
 };
 
-export default [lastEditDate];
+export const googleAnalytics = (store) => {
+  store.subscribe((mutation, state) => {
+    if (mutation.type === 'route/ROUTE_CHANGED') {
+      analytics.sendPageView(state.route.path);
+    } else {
+      analytics.sendEvent(mutation.type);
+    }
+  });
+};
+
+export default [lastEditDate, googleAnalytics];
