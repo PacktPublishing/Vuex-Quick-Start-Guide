@@ -35,7 +35,7 @@ export default (options) => {
     });
   }
 
-  const undoRedo = (store) => {
+  const undoRedoPlugin = (store) => {
     function takeStateSnapshot(state) {
       const toClone = {};
       Object.keys(state).forEach((key) => {
@@ -57,11 +57,11 @@ export default (options) => {
     store.subscribe(({ type }, state) => {
       if (mutationsToExclude[type] === undefined) {
         const index = state[moduleName].currentPosition + 1;
-        const snapShots = state[moduleName].snapShots.slice();
-        snapShots.length = index + 1;
-        snapShots[index] = takeStateSnapshot(state);
+        const snapshots = state[moduleName].snapshots.slice();
+        snapshots.length = index + 1;
+        snapshots[index] = takeStateSnapshot(state);
         store.commit(currentPositionType, index);
-        store.commit(updateSnapshotType, snapShots);
+        store.commit(updateSnapshotType, snapshots);
       }
     });
 
@@ -71,28 +71,28 @@ export default (options) => {
         canUndo({ currentPosition }) {
           return currentPosition >= 1;
         },
-        canRedo({ currentPosition, snapShots }) {
-          return currentPosition < snapShots.length - 1;
+        canRedo({ currentPosition, snapshots }) {
+          return currentPosition < snapshots.length - 1;
         },
       },
       state: {
         currentPosition: 0,
-        snapShots: [takeStateSnapshot(store.state)],
+        snapshots: [takeStateSnapshot(store.state)],
       },
       mutations: {
         [UNDO](state) {
           if (store.getters[canUndoGetter]) {
             state.currentPosition--;
-            const { snapShots } = state;
-            const snapShot = snapShots[state.currentPosition];
+            const { snapshots } = state;
+            const snapShot = snapshots[state.currentPosition];
             restoreStateSnapshot(store.state, snapShot);
           }
         },
         [REDO](state) {
           if (store.getters[canRedoGetter]) {
             state.currentPosition++;
-            const { snapShots } = state;
-            const snapShot = snapShots[state.currentPosition];
+            const { snapshots } = state;
+            const snapShot = snapshots[state.currentPosition];
             restoreStateSnapshot(store.state, snapShot);
           }
         },
@@ -100,11 +100,11 @@ export default (options) => {
           state.currentPosition = value;
         },
         [UPDATE_SNAPSHOTS](state, value) {
-          state.snapShots = value;
+          state.snapshots = value;
         },
       },
     });
   };
 
-  return undoRedo;
+  return undoRedoPlugin;
 };
