@@ -11,6 +11,10 @@
       <note-editor class="note-editor" @editDone="onEditDone"
                    :note="$store.state.editNote"/>
     </div>
+    <div>
+      <button @click="undo">Undo</button>
+      <button @click="redo">Redo</button>
+    </div>
   </div>
 </template>
 <script>
@@ -31,6 +35,12 @@
       },
       onEditDone(note) {
         this.$store.dispatch('updateNote', note);
+      },
+      undo() {
+        this.$store.commit('undoRedo/undo');
+      },
+      redo() {
+        this.$store.commit('undoRedo/redo');
       },
     },
   };

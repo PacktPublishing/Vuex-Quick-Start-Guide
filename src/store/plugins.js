@@ -1,6 +1,7 @@
 // src/store/plugins.js
 import { types } from './mutations';
 import analytics from '../gtag';
+import undoRedoFactory from './undo-redo-plugin';
 
 export const lastEditDate = (store) => {
   store.subscribe((mutation) => {
@@ -20,4 +21,12 @@ export const googleAnalytics = (store) => {
   });
 };
 
-export default [lastEditDate, googleAnalytics];
+const undoRedo = undoRedoFactory({
+  statePropsToExclude: ['route'],
+  mutationsToExclude:
+    [types.UPDATE_LAST_EDIT_DATE,
+      'route/ROUTE_CHANGED',
+      types.EDIT_NOTE],
+});
+
+export default [lastEditDate, googleAnalytics, undoRedo];

@@ -3,6 +3,7 @@
   <div class="container">
     <note v-for="(note, i) in notes" :note="note" :key="i">
     </note>
+    <div class="clear"></div>
   </div>
 </template>
 <script>
@@ -22,5 +23,8 @@
   .container {
     position: relative;
     margin-top: 10px;
+  }
+  .clear {
+    clear: both;
   }
 </style>
