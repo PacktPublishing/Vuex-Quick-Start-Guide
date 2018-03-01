@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex condensed example</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://unpkg.com/vuex@3.0.1/dist/vuex.min.js"></script>
+<script src="https://unpkg.com/vue@2.5.13/dist/vue.min.js"></script>
+
+<script>
+Vue.use(Vuex);
+const CounterComponent = {
+  template: `
+  <div>
+   <p>I will count from 1 to {{end}}.</p>
+   <button @click="beginCounting">Begin!</button>
+   <p>{{counter}}</p>
+  </div>
+  `,
+  data() {
+    return {
+      end: 3,
+      counter: 0,
+    };
+  },
+  methods: {
+    beginCounting() {
+      this.counter = 0;
+      const increaseCounter = () => {
+        this.counter++;
+        if (this.counter < this.end) {
+          setTimeout(increaseCounter, 1000);
+        }
+      };
+      increaseCounter();
+    },
+  },
+};
+
+new Vue({
+  el: '#app',
+  template: '<counter></counter>',
+  components: {
+    counter: CounterComponent,
+  },
+});
+</script>
+</body>
+</html>
