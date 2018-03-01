@@ -11,11 +11,12 @@
 <script>
   Vue.use(Vuex);
 
+  // Sequential module
   const sequential = {
     namespaced: true,
     state() {
       return {
-        count: 1
+        count: 1,
       };
     },
     mutations: {
@@ -23,35 +24,39 @@
       decrement: state => state.count--
     },
     actions: {
-      increment: ({commit}) => commit('increment'),
-      decrement: ({commit}) => commit('decrement')
+      increment: ({ commit }) => commit('increment'),
+      decrement: ({ commit }) => commit('decrement'),
     },
     getters: {
       name: () => 'Sequential',
-      currentCount: state => state.count
-    }
+      currentCount: state => state.count,
+    },
   };
 
+  // FizzBuzz module that extends sequential module
+  // and redefine some functions.
   const fizzBuzz = Object.assign({}, sequential, {
     getters: {
       name: () => 'FizzBuzz',
       currentCount: state => {
-        const count = state.count;
+        const { count } = state;
         let msg = '';
         if (count % 3 === 0) msg += "Fizz";
         if (count % 5 === 0) msg += "Buzz";
-        return count + ' ' + msg;
-      }
-    }
+        return `${count} ${msg}`;
+      },
+    },
   });
 
+  // Application store with the two modules
   const store = new Vuex.Store({
     modules: {
       sequential,
-      fizzBuzz
-    }
+      fizzBuzz,
+    },
   });
 
+  // HTML template to show the result
   const template = `
   <div>
     <button @click="increment">+</button>
@@ -60,30 +65,33 @@
   </div>
 `;
 
+  // counter component
   const counter = {
     template,
     computed: Vuex.mapGetters('sequential', [
       'name',
-      'currentCount'
+      'currentCount',
     ]),
     methods: Vuex.mapActions('sequential', [
       'increment',
-      'decrement'
-    ])
+      'decrement',
+    ]),
   };
 
+  // fizzBuzzCounter component
   const fizzBuzzCounter = {
     template,
     computed: Vuex.mapGetters('fizzBuzz', [
       'name',
-      'currentCount'
+      'currentCount',
     ]),
     methods: Vuex.mapActions('fizzBuzz', [
       'increment',
-      'decrement'
-    ])
+      'decrement',
+    ]),
   };
 
+  // Vue instance with the store and the components
   new Vue({
     el: '#app',
     store,
@@ -91,8 +99,8 @@
     '<fizzBuzzCounter></fizzBuzzCounter></div>',
     components: {
       counter,
-      fizzBuzzCounter
-    }
+      fizzBuzzCounter,
+    },
   });
 </script>
 </body>
