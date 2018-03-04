@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex condensed example</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://unpkg.com/vuex@3.0.1/dist/vuex.min.js"></script>
+<script src="https://unpkg.com/vue@2.5.13/dist/vue.min.js"></script>
+
+<script>
+  Vue.use(Vuex);
+
+  // Server API mock
+  const API = {
+    addMessage: () => Promise.resolve()
+  };
+
+  const store = new Vuex.Store({
+    state: {
+      messages: [],
+    },
+    mutations: {
+      addNewMessage(state, msgText) {
+        state.messages.push({ text: msgText, read: false });
+      },
+    },
+    actions: {
+      addMessage(context, msgText) {
+        API.addMessage(msgText).then(() => {
+          context.commit('addNewMessage', msgText);
+        });
+      },
+    },
+  });
+
+  const MessageList = {
+    template: `<ul>
+        <li v-for="message in messages">{{message.text}}</li>
+      </ul>
+    `,
+    computed: Vuex.mapState(['messages']),
+  };
+
+  const MessageEditor = {
+    template: `<div>
+      <input type="text" v-model="message">
+      <button @click="addMessage">Add message</button>
+    </div>
+    `,
+    data() {
+      return {
+        message: '',
+      };
+    },
+    methods: {
+      addMessage() {
+        this.$store.dispatch('addMessage', this.message);
+      },
+    },
+  };
+
+  new Vue({
+    el: '#app',
+    store,
+    components: { MessageList, MessageEditor },
+    template: `
+    <div class="app">
+      <message-editor></message-editor>
+      <message-list></message-list>
+    </div>
+  `,
+  });
+</script>
+</body>
+</html>
