@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex condensed example</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://unpkg.com/vuex@3.0.1/dist/vuex.min.js"></script>
+<script src="https://unpkg.com/vue@2.5.13/dist/vue.min.js"></script>
+
+<script>
+  Vue.use(Vuex);
+  const store = new Vuex.Store({
+    state: {
+      messages: [
+        { id: 1, text: 'First message', read: true },
+        { id: 2, text: 'Second message', read: false },
+      ],
+    },
+    getters: {
+      unreadMessages(state) {
+        return state.messages.filter(message => !message.read);
+      },
+      unreadCounter(state, getters) {
+        return getters.unreadMessages.length;
+      },
+    },
+  });
+
+  const NumUnreadMessages = {
+    template: `<div>Unread: {{ unreadCounter }}</div>`,
+    computed: Vuex.mapGetters(['unreadCounter']),
+  };
+
+  new Vue({
+    el: '#app',
+    // By providing the store, it will be available inside
+    // components
+    store,
+    components: { NumUnreadMessages },
+    template: `
+    <div class="app">
+      <num-unread-messages></num-unread-messages>
+    </div>
+  `,
+  });
+</script>
+</body>
+</html>
