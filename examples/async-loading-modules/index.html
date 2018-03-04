@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex condensed example</title>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://unpkg.com/vuex@3.0.1/dist/vuex.min.js"></script>
+<script src="https://unpkg.com/vue@2.5.13/dist/vue.min.js"></script>
+
+<script>
+  // index.js
+
+  // Loading module asynchronously
+  Vue.use(Vuex);
+
+  const store = new Vuex.Store({
+    state: {
+      currentView: 'initial'
+    },
+  });
+
+  Vue.component('initial', {
+    template: '<div>initial</div>',
+  });
+
+  import ('./loaded-later-moudle.js').then((module) => {
+    module.default(store);
+  });
+
+  new Vue({
+    el: '#app',
+    template: '<component :is="$store.state.currentView"/>',
+    store,
+  });
+</script>
+</body>
+</html>
