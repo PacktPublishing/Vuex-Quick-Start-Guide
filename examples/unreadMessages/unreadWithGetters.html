@@ -13,15 +13,28 @@
   Vue.use(Vuex);
   const store = new Vuex.Store({
     state: {
-      unreadCounter: 1,
+      messages: [
+        { id: 1, text: 'First message', read: true },
+        { id: 2, text: 'Second message', read: false },
+      ],
+    },
+    getters: {
+      unreadMessages(state) {
+        return state.messages.filter(message => !message.read);
+      },
+      unreadCounter(state, getters) {
+        return getters.unreadMessages.length;
+      },
     },
   });
 
   const NumUnreadMessages = {
     template: `<div>Unread: {{ unreadCounter }}</div>`,
-    computed: Vuex.mapState({
-      unreadCounter: state => state.unreadCounter,
-    }),
+    computed: {
+      unreadCounter() {
+        return this.$store.getters.unreadCounter;
+      },
+    },
   };
 
   new Vue({
@@ -29,7 +42,7 @@
     // By providing the store, it will be available inside
     // components
     store,
-    components: {NumUnreadMessages},
+    components: { NumUnreadMessages },
     template: `
     <div class="app">
       <num-unread-messages></num-unread-messages>
