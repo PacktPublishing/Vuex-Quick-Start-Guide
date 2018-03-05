@@ -17,7 +17,7 @@
     },
     mutations: {
       addNewMessage(state, msgText) {
-        state.messages.push({ text: msgText, read: false });
+        state.messages.push({text: msgText, read: false});
       },
     },
   });
@@ -33,7 +33,7 @@
   const MessageEditor = {
     template: `<div>
       <input type="text" v-model="message">
-      <button @click="addMessage">Add message</button>
+      <button @click="addNewMessage(message)">Add message</button>
     </div>
     `,
     data() {
@@ -41,21 +41,16 @@
         message: '',
       };
     },
-    methods: {
-      addMessage() {
-        this.addNewMessage(this.message);
-      },
-      ...Vuex.mapMutations([
-        // Payload is also supported
-        'addNewMessage'
-      ]),
-    },
+    methods: Vuex.mapMutations([
+      // Payload is also supported
+      'addNewMessage'
+    ]),
   };
 
   new Vue({
     el: '#app',
     store,
-    components: { MessageList, MessageEditor },
+    components: {MessageList, MessageEditor},
     template: `
     <div class="app">
       <message-editor></message-editor>
