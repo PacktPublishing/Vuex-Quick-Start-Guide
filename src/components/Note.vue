@@ -2,9 +2,7 @@
 <template>
   <div class="note">
     <div class="title">{{note.title}}</div>
-    <div class="content"
-         style="white-space: pre-line;" v-text="note.content">
-    </div>
+    <div class="content" v-text="note.content"></div>
     <div class="icons">
       <img class="edit" src="./edit.svg"
            @click="onEdit"/>
@@ -28,6 +26,7 @@
 </script>
 <style scoped>
   .note {
+    white-space: pre-line;
     display: inline-block;
     position: relative;
     border: 1px solid grey;
