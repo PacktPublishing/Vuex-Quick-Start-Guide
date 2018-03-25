@@ -7,10 +7,11 @@
     "pretest": "npm run lint",
     "prestart": "npm install",
     "test": "karma start",
-    "start": "webpack-dev-server --mode development --open",
+    "start": "npm run chapter-5",
     "build": "cross-env NODE_ENV=production webpack --mode production",
-    "lint": "eslint src test src/**/*.vue test/**/*.vue",
-    "chapter-3": "npm start",
+    "lint": "eslint chapter-3 chapter-5 test chapter-3/**/*.vue chapter-5/**/*.vue test/**/*.vue",
+    "chapter-3": "webpack-dev-server --config chapter-3.webpack.config.js --mode development --open",
+    "chapter-5": "webpack-dev-server --mode development --open",
     "chapter-2": "http-server ./chapter-2/ -c 1  -o"
   },
   "repository": {

@@ -1,5 +1,5 @@
 // test/store/mutations.spec.js
-import { lastEditDate, googleAnalytics } from '../../chapter-3/store/plugins';
+import { lastEditDate, googleAnalytics } from '../../chapter-5/store/plugins';
 import { types } from '../../chapter-3/store/mutations';
 import GtagAnalytics from '../../chapter-3/gtag';
 

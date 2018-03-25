@@ -11,11 +11,15 @@
       <note-editor class="note-editor" @editDone="onEditDone"
                    :note="$store.state.editNote"/>
     </div>
+    <div>
+      <button @click="undo">Undo</button>
+      <button @click="redo">Redo</button>
+    </div>
   </div>
 </template>
 <script>
-  import NoteList from './NoteList.vue';
-  import NoteEditor from './NoteEditor.vue';
+  import NoteList from '../../chapter-3/components/NoteList.vue';
+  import NoteEditor from '../../chapter-3/components/NoteEditor.vue';
 
   export default {
     created() {
@@ -31,6 +35,12 @@
       },
       onEditDone(note) {
         this.$store.dispatch('updateNote', note);
+      },
+      undo() {
+        this.$store.commit('undoRedo/undo');
+      },
+      redo() {
+        this.$store.commit('undoRedo/redo');
       },
     },
   };

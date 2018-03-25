@@ -1,6 +1,6 @@
 // src/store/plugins.js
-import { types } from './mutations';
-import analytics from '../gtag';
+import { types } from '../../chapter-3/store/mutations';
+import analytics from '../../chapter-3/gtag';
 import undoRedoFactory from './undo-redo-plugin';
 
 export const lastEditDate = (store) => {
