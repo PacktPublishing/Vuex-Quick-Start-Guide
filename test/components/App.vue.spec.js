@@ -1,7 +1,7 @@
 // test/components/App.spec.js
 import Vue from 'vue';
 import Vuex from 'vuex';
-import App from '../../src/components/App.vue';
+import App from '../../chapter-3/components/App.vue';
 
 describe('App.vue', () => {
   let store;

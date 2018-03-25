@@ -1,6 +1,6 @@
 // test/components/NoteEditor.spec.js
 import Vue from 'vue';
-import NoteEditor from '../../src/components/NoteEditor.vue';
+import NoteEditor from '../../chapter-3/components/NoteEditor.vue';
 
 describe('NoteEditor component', () => {
   let note;
