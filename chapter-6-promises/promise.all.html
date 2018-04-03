@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex condensed: Promise.all</title>
+</head>
+<body>
+<div class="console"></div>
+<script>
+  const originalConsoleLog = console.log.bind(console);
+  const consoleElement = document.querySelector('.console');
+  console.log = function(...args) {
+    originalConsoleLog(...args);
+    consoleElement.innerHTML += args[0] + '<br>';
+  };
+</script>
+<script>
+  const p1 = asyncEcho('A', 500);
+  const p2 = asyncEcho('B', 1000);
+  const e = asyncFail('E1', 100);
+
+  Promise.all([p1, p2]).then((values) =>
+    console.log('OK ' + values));
+
+  Promise.all([p1, p2, e]).then(() => {
+    console.log('this gets not executed');
+  }, (error) => {
+    console.log('Err ' + error);
+  });
+
+  function asyncEcho(echoMsg, delay) {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(echoMsg), delay);
+    });
+  }
+
+  function asyncFail(error, delay) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => reject(error), delay);
+    });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex condensed: Buggy toss</title>
+</head>
+<body>
+<div class="console"></div>
+<script>
+  const originalConsoleLog = console.log.bind(console);
+  const consoleElement = document.querySelector('.console');
+  console.log = function(...args) {
+    originalConsoleLog(...args);
+    consoleElement.innerHTML += args[0] + '<br>';
+  };
+</script>
+
+<script>
+  function iMayFail() {
+    const rand = Math.random();
+    const successP = Promise.resolve();
+    const failP = Promise.reject();
+
+    return rand < 0.5 ? successP : failP;
+  }
+
+  function buggyToss() {
+    return iMayFail().then(
+      () => 'Success', // Success callback
+      () => 'Fail' // Fail callback
+    );
+  }
+
+  buggyToss().then(
+    result => console.log('Resolved ' + result),
+    result => console.log('Rejected ' + result)
+  );
+
+  // Output is always 'Resolved Fail' or 'Resolved Success'
+</script>
+
+</body>
+</html>

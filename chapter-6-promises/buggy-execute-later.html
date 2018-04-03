@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex condensed: buggy execute later</title>
+</head>
+<body>
+<div class="console"></div>
+<script>
+  const originalConsoleLog = console.log.bind(console);
+  const consoleElement = document.querySelector('.console');
+  console.log = function(...args) {
+    originalConsoleLog(...args);
+    consoleElement.innerHTML += args[0] + '<br>';
+  };
+</script>
+<script>
+  console.log(1);
+  buggyExecuteLater(() => console.log(3));
+  console.log(2);
+
+  function buggyExecuteLater(callback) {
+    new Promise(() => callback());
+  }
+
+  // Output
+  // 1
+  // 3
+  // 2
+</script>
+</body>
+</html>

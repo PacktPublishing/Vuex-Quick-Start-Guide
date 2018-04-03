@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex condensed: Chaining promises with rejections</title>
+</head>
+<body>
+<div class="console"></div>
+<script>
+  const originalConsoleLog = console.log.bind(console);
+  const consoleElement = document.querySelector('.console');
+  console.log = function(...args) {
+    originalConsoleLog(...args);
+    consoleElement.innerHTML += args[0] + '<br>';
+  };
+</script>
+<script>
+  // Creates a resolved promise
+  const p1 = Promise.resolve();
+
+  // Chaining promises
+  p1
+    .then(() => {console.log(1); return asyncFail();})
+    .then(() => console.log(2), // success
+      () => console.log('Fail 2')) // fail
+    .then(() => {console.log(3); throw 'An error';}, // success
+      () => console.log('Fail 3')) // fail
+    .then(() => console.log(4), // success
+      () =>{console.log('Fail 4');return Promise.reject()})
+    .catch(()=> console.log('Catch called'));
+
+  function asyncFail() {
+    return new Promise((resolve, reject) => {
+      setTimeout(reject, 1000);
+    });
+  }
+</script>
+</body>
+</html>

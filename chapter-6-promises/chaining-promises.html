@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vuex condensed: Chaining promises</title>
+</head>
+<body>
+<div class="console"></div>
+<script>
+  const originalConsoleLog = console.log.bind(console);
+  const consoleElement = document.querySelector('.console');
+  console.log = function(...args) {
+    originalConsoleLog(...args);
+    consoleElement.innerHTML += args[0] + '<br>';
+  };
+</script>
+<script>
+  // Creates a resolved promise with a return value 'A'
+  const p1 = Promise.resolve('A');
+
+  console.log('start');
+  // Chaining promises
+  p1
+    .then(result => result + 'B')
+    .then(result => asyncEcho(result + 'C')) // wait 1000 ms
+    .then(result => console.log(result))
+  console.log('end');
+
+  function asyncEcho(echoMsg) {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(echoMsg), 1000);
+    });
+  }
+</script>
+</body>
+</html>
