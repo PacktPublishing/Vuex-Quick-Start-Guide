@@ -1,5 +1,5 @@
 // test/store/mutations.spec.js
-import { mutations, types } from '../../chapter-3/store/mutations';
+import { mutations, types } from '../../chapter-4/store/mutations';
 
 describe('EveryNote root mutations', () => {
   it('should update current note', () => {

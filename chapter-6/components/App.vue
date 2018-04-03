@@ -18,8 +18,8 @@
   </div>
 </template>
 <script>
-  import NoteList from '../../chapter-3/components/NoteList.vue';
-  import NoteEditor from '../../chapter-3/components/NoteEditor.vue';
+  import NoteList from '../../chapter-4/components/NoteList.vue';
+  import NoteEditor from '../../chapter-4/components/NoteEditor.vue';
 
   export default {
     created() {
