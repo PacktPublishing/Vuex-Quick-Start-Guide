@@ -1,2 +1,2 @@
-# -Vuex-Condensed
- Vuex Condensed
+# -Vuex Quick Start Guide
+Vuex Quick Start Guide
