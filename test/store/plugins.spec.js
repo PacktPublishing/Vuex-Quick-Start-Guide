@@ -1,7 +1,7 @@
 // test/store/mutations.spec.js
-import { lastEditDate, googleAnalytics } from '../../chapter-6/store/plugins';
-import { types } from '../../chapter-4/store/mutations';
-import GtagAnalytics from '../../chapter-4/gtag';
+import { lastEditDate, googleAnalytics } from '../../Chapter06/store/plugins';
+import { types } from '../../Chapter04/store/mutations';
+import GtagAnalytics from '../../Chapter04/gtag';
 
 describe('EveryNote plugins', () => {
   let storeMock;

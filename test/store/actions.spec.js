@@ -1,7 +1,7 @@
 // test/store/actions.spec.js
-import actions from '../../chapter-4/store/actions';
-import { types } from '../../chapter-4/store/mutations';
-import api from '../../chapter-4/api/api-mock';
+import actions from '../../Chapter04/store/actions';
+import { types } from '../../Chapter04/store/mutations';
+import api from '../../Chapter04/api/api-mock';
 
 describe('EveryNote root actions', () => {
   it('should have addNote action', () => {

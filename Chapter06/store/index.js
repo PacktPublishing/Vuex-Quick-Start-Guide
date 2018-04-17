@@ -4,8 +4,8 @@ import Vue from 'vue';
 import { sync } from 'vuex-router-sync';
 import createLogger from 'vuex/dist/logger';
 import createPersistedState from 'vuex-persistedstate';
-import { mutations } from '../../chapter-4/store/mutations';
-import actions from '../../chapter-4/store/actions';
+import { mutations } from '../../Chapter04/store/mutations';
+import actions from '../../Chapter04/store/actions';
 import plugins from './plugins';
 import router from '../router';
 

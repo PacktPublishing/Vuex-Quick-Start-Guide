@@ -1,5 +1,5 @@
 // test/store/store.spec.js
-import store from '../../chapter-4/store';
+import store from '../../Chapter04/store';
 
 describe('EveryNote main store', () => {
   it('should have a list of notes', () => {

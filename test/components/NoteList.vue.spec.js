@@ -2,7 +2,7 @@
 
 import Vue from 'vue';
 import Vuex from 'vuex';
-import NoteList from '../../chapter-4/components/NoteList.vue';
+import NoteList from '../../Chapter04/components/NoteList.vue';
 
 describe('NoteList.vue', () => {
   let store;

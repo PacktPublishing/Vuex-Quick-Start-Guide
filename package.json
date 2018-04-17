@@ -7,14 +7,14 @@
     "pretest": "npm run lint",
     "prestart": "npm install",
     "test": "karma start",
-    "start": "npm run chapter-6",
+    "start": "npm run Chapter06",
     "build": "cross-env NODE_ENV=production webpack --mode production",
-    "lint": "eslint chapter-4 chapter-6 test chapter-4/**/*.vue chapter-6/**/*.vue test/**/*.vue",
-    "chapter-2": "http-server ./chapter-2/ -c 1 -o",
-    "chapter-3": "webpack-dev-server --config chapter-3/webpack.config.js --mode development --open",
-    "chapter-4": "webpack-dev-server --config chapter-4/webpack.config.js --mode development --open",
-    "chapter-6": "webpack-dev-server --config chapter-6/webpack.config.js --mode development --open",
-    "chapter-6-promises": "http-server ./chapter-6-promises/ -c 1 -o"
+    "lint": "eslint Chapter-4 Chapter-6 test Chapter-4/**/*.vue Chapter-6/**/*.vue test/**/*.vue",
+    "Chapter02": "http-server ./Chapter02/ -c 1 -o",
+    "Chapter03": "webpack-dev-server --config Chapter03/webpack.config.js --mode development --open",
+    "Chapter04": "webpack-dev-server --config Chapter04/webpack.config.js --mode development --open",
+    "Chapter06": "webpack-dev-server --config Chapter06/webpack.config.js --mode development --open",
+    "Chapter06-promises": "http-server ./Chapter06-promises/ -c 1 -o"
   },
   "repository": {
     "type": "git",

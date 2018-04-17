@@ -6,15 +6,15 @@ const webpack = require('webpack');
 
 const config = {
   entry: {
-    app: './chapter-3/main.js',
+    app: './Chapter03/main.js',
   },
   output: {
     filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist-chapter-3/'),
+    path: path.resolve(__dirname, 'dist-Chapter03/'),
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: 'chapter-3/index.html' }),
-    new CleanWebpackPlugin(['dist-chapter-3']),
+    new HtmlWebpackPlugin({ template: 'Chapter03/index.html' }),
+    new CleanWebpackPlugin(['dist-Chapter03']),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
     }),

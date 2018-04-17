@@ -1,7 +1,7 @@
 // test/components/Note.spec.js
 import Vue from 'vue';
 import Vuex from 'vuex';
-import Note from '../../chapter-4/components/Note.vue';
+import Note from '../../Chapter04/components/Note.vue';
 
 describe('Note.vue', () => {
   let note;
