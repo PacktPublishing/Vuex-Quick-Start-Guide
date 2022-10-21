@@ -38,3 +38,7 @@ Finally, to use the Git repository of this book, the user needs to install Git a
 
 * [Vue.js 2.x by Example](https://www.packtpub.com/application-development/vuejs-2x-example?utm_source=github&utm_medium=repository&utm_campaign=9781788293464)
 
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781788999939">https://packt.link/free-ebook/9781788999939 </a> </p>
